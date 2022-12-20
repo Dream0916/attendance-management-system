@@ -1,0 +1,6 @@
+flask-restful
+flask
+flask-mongoengine
+flask-jwt-extended
+deepface
+matplotlib

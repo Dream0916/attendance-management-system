@@ -1,0 +1,70 @@
+<div class="container h-100-vh">
+    <div class="row justify-content-center align-items-center h-100-vh">
+        <div class="col-md-5 col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Register</h3>
+                </div>
+                <div class="card-body">
+                    <form (ngSubmit)="registerForm.form.valid && onSubmit()" #registerForm="ngForm" autocomplete="off">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="nc-icon nc-circle-10"></i></span>
+                            </div>
+                            <input type="text" [(ngModel)]="register.email" name="email" required class="form-control"
+                                placeholder="Email" #email="ngModel">
+                        </div>
+                        <span *ngIf="email.invalid && (email.dirty || email.touched  || registerForm.submitted)"
+                            class="text-danger">
+                            <span *ngIf="email.errors?.required">
+                                Email is required
+                            </span>
+                        </span>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="nc-icon nc-key-25"></i></span>
+                            </div>
+                            <input type="password" [(ngModel)]="register.password" name="password" required
+                                class="form-control" placeholder="Password" #password="ngModel">
+                        </div>
+                        <span
+                            *ngIf="password.invalid && (password.dirty || password.touched  || registerForm.submitted)"
+                            class="text-danger">
+                            <span *ngIf="password.errors?.required">
+                                Password is required
+                            </span>
+                        </span>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="nc-icon nc-key-25"></i></span>
+                            </div>
+                            <input type="password" [(ngModel)]="register.confirmPassword" name="confirmPassword"
+                                required (keyup)="onPasswordChange($event)" class="form-control"
+                                placeholder="Confirm Password" #confirmPassword="ngModel">
+                        </div>
+                        <span
+                            *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched  || registerForm.submitted)"
+                            class="text-danger">
+                            <span *ngIf="confirmPassword.errors?.required">
+                                Confirm Password is required
+                            </span>
+                        </span>
+                        <span *ngIf="confirmPasswordError" class="text-danger">
+                            Password doesn't match
+                        </span>
+                        <div class="form-group">
+                            <div class="d-flex justify-content-center">
+                                <input type="submit" value="Register" class="btn btn-success btn-round">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        Already have an account ? &nbsp;<a [routerLink]="['/']">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

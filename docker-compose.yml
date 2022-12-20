@@ -1,0 +1,29 @@
+version: "2.2"
+services:
+  webbackend:
+    build: .
+    network_mode: "host"
+    container_name: atms-webapp-backend
+    restart: always
+    volumes:
+      - .:/code
+    ports:
+      - "5000:5000"
+    command:
+      "python3.7 app.py --port=5000"
+#      "gunicorn --workers=2 --bind=0.0.0.0:9000 utootuweb.wsgi:application"
+
+  webfrontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    network_mode: "host"
+    container_name: atms-webapp-frontend
+    restart: always
+    volumes:
+      - ./frontend:/code
+    ports:
+      - "5000:5000"
+#    command:
+#      "python3.7 app.py --port=5000"
+#  #      "gunicorn --workers=2 --bind=0.0.0.0:9000 utootuweb.wsgi:application"
